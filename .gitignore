@@ -1,0 +1,12 @@
+.anchor
+.DS_Store
+target
+**/*.rs.bk
+node_modules
+test-ledger
+.yarn
+programs/governance
+programs/marketplace
+programs/staking
+programs/vault
+
