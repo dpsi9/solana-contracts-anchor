@@ -7,6 +7,5 @@ test-ledger
 .yarn
 programs/governance
 programs/marketplace
-programs/staking
 programs/vault
 
