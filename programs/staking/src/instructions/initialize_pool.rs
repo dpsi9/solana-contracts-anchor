@@ -1,24 +1,21 @@
-use crate::state::{StakePool, UserStakeAccount};
 use anchor_lang::prelude::*;
 use anchor_spl::token_interface::{Mint, TokenAccount, TokenInterface};
+use crate::state::StakePool;
 
-pub fn process_initialize_pool(
-    ctx: Context<InitializePool>,
-    reward_rate: u64,
-    min_stake_duration: i64,
-) -> Result<()> {
-    *ctx.accounts.stake_pool = StakePool {
-        authority: ctx.accounts.authority.key(),
-        stake_mint: ctx.accounts.stake_mint.key(),
-        reward_mint: ctx.accounts.reward_mint.key(),
-        reward_vault: ctx.accounts.reward_vault.key(),
-        reward_rate: reward_rate,
-        min_stake_duration: min_stake_duration,
-        total_staked: 0,
-        last_update_time: Clock::get()?.unix_timestamp,
-        reward_per_token_stored: 0,
-        bump: ctx.bumps.stake_pool,
-    };
+pub fn process_initialize_pool(ctx: Context<InitializePool>, reward_rate: u64, minimum_stake_duration: i64) -> Result<()> {
+    let pool = &mut ctx.accounts.stake_pool;
+
+    pool.authority = ctx.accounts.authority.key();
+    pool.stake_mint = ctx.accounts.stake_mint.key();
+    pool.reward_mint = ctx.accounts.reward_mint.key();
+    pool.total_staked = 0;
+    pool.reward_per_token_stored = 0;
+    pool.reward_rate = reward_rate;
+    pool.min_stake_duration = minimum_stake_duration;
+    pool.last_updated = Clock::get()?.unix_timestamp;
+    pool.bump = ctx.bumps.stake_pool;
+
+    msg!("Staking Pool initialized! reward rate: {} per second", reward_rate);
     Ok(())
 }
 
@@ -39,11 +36,23 @@ pub struct InitializePool<'info> {
     #[account(
         init,
         payer = authority,
+        token::mint = stake_mint,
+        token::authority = stake_pool,
+        token::token_program = token_program,
+        seeds = [b"stake_vault", stake_pool.key().as_ref(),stake_mint.key().as_ref()],
+        bump
+    )]
+    pub pool_stake_vault: InterfaceAccount<'info, TokenAccount>,
+    #[account(
+        init, 
+        payer = authority,
         token::mint = reward_mint,
         token::authority = stake_pool,
         token::token_program = token_program,
+        seeds = [b"reward_vault", stake_pool.key().as_ref(), reward_mint.key().as_ref()],
+        bump
     )]
-    pub reward_vault: InterfaceAccount<'info, TokenAccount>,
-    pub system_program: Program<'info, System>,
+    pub pool_reward_vault: InterfaceAccount<'info, TokenAccount>,
     pub token_program: Interface<'info, TokenInterface>,
+    pub system_program: Program<'info, System>
 }

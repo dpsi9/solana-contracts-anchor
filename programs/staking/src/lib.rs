@@ -1,10 +1,21 @@
 use anchor_lang::prelude::*;
-pub mod state;
-pub mod instructions;
+mod error;
+mod instructions;
+mod state;
+mod utility;
 declare_id!("StaKe11111111111111111111111111111111111111");
 
 #[program]
 pub mod staking {
-    // Your staking contract implementation goes here
-}
+    use crate::instructions::{process_initialize_pool, InitializePool};
 
+    use super::*;
+
+    pub fn initialize_pool(
+        ctx: Context<InitializePool>,
+        reward_rate: u64,
+        minimum_stake_duration: i64,
+    ) -> Result<()> {
+        process_initialize_pool(ctx, reward_rate, minimum_stake_duration)
+    }
+}
