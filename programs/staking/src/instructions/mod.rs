@@ -6,3 +6,5 @@ pub mod unstake;
 pub use unstake::*;
 pub mod claim_reward;
 pub use claim_reward::*;
+pub mod update_pool;
+pub use update_pool::*;

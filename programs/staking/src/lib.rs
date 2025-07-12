@@ -29,4 +29,12 @@ pub mod staking {
     pub fn claim_rewards(ctx: Context<ClaimRewards>) -> Result<()> {
         process_claim_rewards(ctx)
     }
+
+    pub fn update_pool(
+        ctx: Context<UpdatePool>,
+        new_reward_rate: Option<u64>,
+        new_min_duration: Option<i64>,
+    ) -> Result<()> {
+        process_update_pool(ctx, new_reward_rate, new_min_duration)
+    }
 }
