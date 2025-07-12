@@ -4,3 +4,5 @@ pub mod initialize_pool;
 pub use initialize_pool::*;
 pub mod unstake;
 pub use unstake::*;
+pub mod claim_reward;
+pub use claim_reward::*;

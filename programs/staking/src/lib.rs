@@ -25,4 +25,8 @@ pub mod staking {
     pub fn unstake(ctx: Context<Unstake>, amount: u64) -> Result<()> {
         process_unstake(ctx, amount)
     }
+
+    pub fn claim_rewards(ctx: Context<ClaimRewards>) -> Result<()> {
+        process_claim_rewards(ctx)
+    }
 }
