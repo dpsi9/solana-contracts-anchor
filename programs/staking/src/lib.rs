@@ -3,12 +3,11 @@ mod error;
 mod instructions;
 mod state;
 mod utility;
+use instructions::*;
 declare_id!("StaKe11111111111111111111111111111111111111");
 
 #[program]
 pub mod staking {
-    use crate::instructions::{process_initialize_pool, InitializePool};
-
     use super::*;
 
     pub fn initialize_pool(
@@ -17,5 +16,13 @@ pub mod staking {
         minimum_stake_duration: i64,
     ) -> Result<()> {
         process_initialize_pool(ctx, reward_rate, minimum_stake_duration)
+    }
+
+    pub fn stake(ctx: Context<Stake>, amount: u64) -> Result<()> {
+        process_stake(ctx, amount)
+    }
+
+    pub fn unstake(ctx: Context<Unstake>, amount: u64) -> Result<()> {
+        process_unstake(ctx, amount)
     }
 }
