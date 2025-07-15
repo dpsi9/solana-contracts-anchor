@@ -45,4 +45,7 @@ pub mod vault {
     pub fn add_owner(ctx: Context<AddOwner>, new_owner: Pubkey) -> Result<()> {
         process_add_owner(ctx, new_owner)
     }
+    pub fn remove_owner(ctx: Context<RemoveOwner>, owner_to_remove: Pubkey) -> Result<()> {
+        process_remove_owner(ctx, owner_to_remove)
+    }
 }

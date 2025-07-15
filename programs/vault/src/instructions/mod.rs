@@ -8,3 +8,5 @@ pub mod execute_transaction;
 pub use execute_transaction::*;
 pub mod add_owner;
 pub use add_owner::*;
+pub mod remove_owner;
+pub use remove_owner::*;
