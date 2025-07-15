@@ -18,4 +18,21 @@ pub mod vault {
     ) -> Result<()> {
         process_initialize_vault(ctx, threshold, owners)
     }
+
+    pub fn propose_transaction(
+        ctx: Context<ProposeTransaction>,
+        transaction_id: [u8; 8],
+        recipient: Pubkey,
+        amount: u64,
+        description: String,
+    ) -> Result<()> {
+        process_propose_transaction(ctx, transaction_id, recipient, amount, description)
+    }
+
+    pub fn approve_transaction(
+        ctx: Context<ApproveTransaction>,
+        transaction_id: [u8; 8],
+    ) -> Result<()> {
+        process_approve_transaction(ctx, transaction_id)
+    }
 }
