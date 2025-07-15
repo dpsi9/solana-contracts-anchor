@@ -7,5 +7,6 @@ test-ledger
 .yarn
 programs/governance
 programs/marketplace
-programs/vault
 
+
+.vscode
