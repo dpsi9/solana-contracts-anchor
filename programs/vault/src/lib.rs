@@ -35,4 +35,11 @@ pub mod vault {
     ) -> Result<()> {
         process_approve_transaction(ctx, transaction_id)
     }
+
+    pub fn execute_transaction(
+        ctx: Context<ExecuteTransaction>,
+        transaction_id: [u8; 8],
+    ) -> Result<()> {
+        process_execute_transaction(ctx, transaction_id)
+    }
 }

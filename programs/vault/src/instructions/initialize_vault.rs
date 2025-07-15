@@ -22,6 +22,7 @@ pub fn process_initialize_vault(
 
     vault.authority = ctx.accounts.authority.key();
     vault.token_mint = ctx.accounts.token_mint.key();
+    vault.token_vault = ctx.accounts.token_vault.key();
     vault.threshold = threshold;
     vault.owners = owners.clone();
     vault.transaction_count = 0;

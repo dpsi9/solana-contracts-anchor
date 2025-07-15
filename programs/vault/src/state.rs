@@ -5,6 +5,7 @@ use anchor_lang::prelude::*;
 pub struct Vault {
     pub authority: Pubkey,
     pub token_mint: Pubkey,
+    pub token_vault: Pubkey,
     pub threshold: u8,
     #[max_len(10)]
     pub owners: Vec<Pubkey>,

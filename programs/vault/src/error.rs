@@ -28,4 +28,6 @@ pub enum VaultError {
     OwnerNotFound,
     #[msg("Cannot remove owner")]
     CannotRemoveOwner,
+    #[msg("Invalid token account")]
+    InvalidTokenAccount,
 }
