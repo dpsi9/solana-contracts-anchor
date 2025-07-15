@@ -24,7 +24,8 @@ pub struct Transaction {
     #[max_len(10)]
     pub approved_by: Vec<Pubkey>,
     pub executed: bool,
-    pub created_at: u64,
-    pub executed_at: u64,
+    pub created_at: i64,
+    pub executed_at: i64,
+    pub transaction_id: [u8; 8],
     pub bump: u8,
 }
