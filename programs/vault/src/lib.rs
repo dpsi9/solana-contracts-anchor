@@ -42,4 +42,7 @@ pub mod vault {
     ) -> Result<()> {
         process_execute_transaction(ctx, transaction_id)
     }
+    pub fn add_owner(ctx: Context<AddOwner>, new_owner: Pubkey) -> Result<()> {
+        process_add_owner(ctx, new_owner)
+    }
 }

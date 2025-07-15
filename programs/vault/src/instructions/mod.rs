@@ -6,3 +6,5 @@ pub mod approve_transaction;
 pub use approve_transaction::*;
 pub mod execute_transaction;
 pub use execute_transaction::*;
+pub mod add_owner;
+pub use add_owner::*;
