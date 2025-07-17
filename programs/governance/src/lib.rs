@@ -2,15 +2,17 @@ use anchor_lang::prelude::*;
 
 pub mod error;
 pub mod events;
+pub mod instructions;
 pub mod state;
 
-pub mod instructions;
+use crate::state::{ProposalInstruction, ProposalType};
 pub use instructions::*;
 
 declare_id!("Gover11111111111111111111111111111111111111");
 
 #[program]
 pub mod governance {
+
     use super::*;
 
     pub fn initialize_realm(
@@ -33,5 +35,15 @@ pub mod governance {
             quorum_threshold,
             approval_threshold,
         )
+    }
+
+    pub fn create_proposal(
+        ctx: Context<CreateProposal>,
+        title: String,
+        ipfs_hash: [u8; 46],
+        proposal_type: ProposalType,
+        execution_instruction: Option<Vec<ProposalInstruction>>,
+    ) -> Result<()> {
+        process_create_proposal(ctx, title, ipfs_hash, proposal_type, execution_instruction)
     }
 }

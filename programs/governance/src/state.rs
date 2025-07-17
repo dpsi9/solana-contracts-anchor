@@ -20,11 +20,12 @@ pub struct Realm {
 
 /// Proposals account defines a governance proposal.
 #[account]
-pub struct Propsal {
-    pub realm: Pubkey,       // Name of realm this proposal belongs to
-    pub proposer: Pubkey,    // Who proposed this proposal
-    pub title: String,       // Proposal title
-    pub ipfs_hash: [u8; 46], // CID pointing data(Description) stored on IPFS
+pub struct Proposal {
+    pub realm: Pubkey,               // Name of realm this proposal belongs to
+    pub proposer: Pubkey,            // Who proposed this proposal
+    pub title: String,               // Proposal title
+    pub ipfs_hash: [u8; 46],         // CID pointing data(Description) stored on IPFS
+    pub proposal_type: ProposalType, // Type of proposal
     pub execution_instruction: Vec<ProposalInstruction>, // Instruction information to execute after passing
     pub created_at: i64,                                 // Time of proposal creation
     pub voting_starts_at: i64,                           // Time of voting start

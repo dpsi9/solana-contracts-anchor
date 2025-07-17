@@ -14,8 +14,8 @@ pub fn process_initialize_realm(
     quorum_threshold: u64,
     approval_threshold: u64,
 ) -> Result<()> {
-    require!(!name.is_empty(), GovernanceError::EmptyName);
-    require!(voting_duration > 0, GovernanceError::InvalidVotingDuration);
+    require!(!name.is_empty(), GovernanceError::EmptyName); // Name shouldn't be empty
+    require!(voting_duration > 0, GovernanceError::InvalidVotingDuration); // voting duration must be greater than 0
     require!(quorum_threshold <= 10000, GovernanceError::InvalidQuorum);
     require!(
         approval_threshold <= 10000,
