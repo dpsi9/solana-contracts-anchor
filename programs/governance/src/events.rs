@@ -30,3 +30,8 @@ pub struct ProposalFinalized {
     pub participation: u64,
     pub approval: u64,
 }
+
+#[event]
+pub struct ProposalExecuted {
+    pub proposal: Pubkey,
+}

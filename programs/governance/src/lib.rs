@@ -53,4 +53,8 @@ pub mod governance {
     pub fn finalize_proposal(ctx: Context<FinalizeProposal>) -> Result<()> {
         process_finalize_proposal(ctx)
     }
+
+    pub fn execute_proposal(ctx: Context<ExecuteProposal>) -> Result<()> {
+        process_execute_proposal(ctx)
+    }
 }
