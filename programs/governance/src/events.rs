@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::state::VoteType;
+use crate::state::{ProposalStatus, VoteType};
 
 #[event]
 pub struct RealmInitiated {
@@ -21,4 +21,12 @@ pub struct VoteCast {
     pub voter: Pubkey,
     pub vote_type: VoteType,
     pub weight: u64,
+}
+
+#[event]
+pub struct ProposalFinalized {
+    pub proposal: Pubkey,
+    pub status: ProposalStatus,
+    pub participation: u64,
+    pub approval: u64,
 }

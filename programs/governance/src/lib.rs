@@ -49,4 +49,8 @@ pub mod governance {
     pub fn cast_vote(ctx: Context<CastVote>, vote_type: VoteType) -> Result<()> {
         process_cast_vote(ctx, vote_type)
     }
+
+    pub fn finalize_proposal(ctx: Context<FinalizeProposal>) -> Result<()> {
+        process_finalize_proposal(ctx)
+    }
 }
