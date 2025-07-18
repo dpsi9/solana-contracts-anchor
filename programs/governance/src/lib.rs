@@ -57,4 +57,8 @@ pub mod governance {
     pub fn execute_proposal(ctx: Context<ExecuteProposal>) -> Result<()> {
         process_execute_proposal(ctx)
     }
+
+    pub fn delegate_votes(ctx: Context<DelegateVotes>, delegatee: Pubkey) -> Result<()> {
+        process_delegate_votes(ctx, delegatee)
+    }
 }

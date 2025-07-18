@@ -35,3 +35,9 @@ pub struct ProposalFinalized {
 pub struct ProposalExecuted {
     pub proposal: Pubkey,
 }
+
+#[event]
+pub struct DelegationUpdated {
+    pub voter: Pubkey,
+    pub delegatee: Pubkey,
+}
